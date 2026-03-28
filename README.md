@@ -44,6 +44,29 @@ The script determines a "Fist" state by comparing the Y-coordinates of the finge
 
 ---
 
+---
+
+## 📸 Note on Camera Identifiers
+In the source code, you will see this line:
+`cap = cv2.VideoCapture(2, cv2.CAP_DSHOW)`
+
+### Why index `2`?
+Windows assigns an integer ID to every camera device. 
+- **0:** Usually the built-in webcam.
+- **1:** Often a virtual camera (OBS, Zoom, or EShare).
+- **2:** Typically the external USB webcam.
+
+**If the script doesn't open a window:**
+Change the `2` to `0` or `1`. 
+
+### What is `cv2.CAP_DSHOW`?
+This flag forces OpenCV to use the **Windows DirectShow** framework. This is essential for:
+1. Faster camera startup.
+2. Higher resolution support.
+3. Bypassing "Camera already in use" errors from other background processes.
+
+---
+
 ## 📦 Installation
 Ensure you have the following libraries installed in your environment:
 ```bash
